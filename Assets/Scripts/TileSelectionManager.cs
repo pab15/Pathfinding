@@ -11,23 +11,23 @@ public class SelectionStateMachine
     private SelectionState _noUserSelectedTileState;
     private SelectionState _userSelectedTileState;
 
-    public static SelectionStateMachine GetInstance(Tilemap terrainMap, Tilemap uiMap, TileBase HighlightTile, TileBase SelectedTile)
+    public static SelectionStateMachine GetInstance(Tilemap terrainMap, Tilemap objectMap, Tilemap uiMap, TileBase HighlightTile, TileBase SelectedTile)
     {
         if (_instance == null)
         {
-            _instance = new SelectionStateMachine(terrainMap, uiMap, HighlightTile, SelectedTile);
+            _instance = new SelectionStateMachine(terrainMap, objectMap, uiMap, HighlightTile, SelectedTile);
         }
         return _instance;
     }
 
-    private SelectionStateMachine(Tilemap terrainMap, Tilemap mouseTileMap, TileBase highlight, TileBase selected)
+    private SelectionStateMachine(Tilemap terrainMap, Tilemap objectMap, Tilemap mouseTileMap, TileBase highlight, TileBase selected)
     {
         _noUserSelectedTileState = new NoUserSelectionState(this, mouseTileMap)
         {
             HighlightTile = highlight,
             SelectedTile = selected
         };
-        _userSelectedTileState = new UserSelectionState(this, mouseTileMap, terrainMap)
+        _userSelectedTileState = new UserSelectionState(this, mouseTileMap, objectMap, terrainMap)
         {
             HighlightTile = highlight,
             SelectedTile = selected
@@ -107,10 +107,13 @@ public class UserSelectionState : NoUserSelectionState
 {
     public Vector3Int SelectedTilePosition { get; set; }
     public Tilemap TerrainMap { get; set; }
+    public Tilemap ObsticleMap { get; set; }
+
     private List<Tile> _lastPath = new List<Tile>();
-    public UserSelectionState(SelectionStateMachine machine, Tilemap map, Tilemap terrain) : base(machine, map)
+    public UserSelectionState(SelectionStateMachine machine, Tilemap map, Tilemap objects, Tilemap terrain) : base(machine, map)
     {
         TerrainMap = terrain;
+        ObsticleMap = objects;
         ResetSelectedTile();
     }
 
@@ -152,7 +155,7 @@ public class UserSelectionState : NoUserSelectionState
         base.HandleMouseMovement(position);
         if(SelectedTilePosition != position)
         {
-            var path = PathFinder.DiscoverPath(TerrainMap, SelectedTilePosition, position);
+            var path = PathFinder.DiscoverPath(TerrainMap, ObsticleMap, SelectedTilePosition, position);
             var tiles = path.GetPath();
             //var tiles = new List<Tile>();
             //Debug.Log(position);
@@ -176,6 +179,7 @@ public class TileSelectionManager : MonoBehaviour
 {
     public Tilemap MouseTileMap;
     public Tilemap TerrainTileMap;
+    public Tilemap ObsticleTileMap;
     public TileBase HighlightTile;
     public TileBase SelectedTile;
     private SelectionStateMachine _selectionStateMachine;
@@ -183,7 +187,7 @@ public class TileSelectionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _selectionStateMachine = SelectionStateMachine.GetInstance(TerrainTileMap, MouseTileMap, HighlightTile, SelectedTile);
+        _selectionStateMachine = SelectionStateMachine.GetInstance(TerrainTileMap, ObsticleTileMap, MouseTileMap, HighlightTile, SelectedTile);
     }
 
     private bool HasMouseMoved()
@@ -214,13 +218,14 @@ public class TileSelectionManager : MonoBehaviour
         //TODO: investigate why
         if (_selectionStateMachine == null)
         {
-            _selectionStateMachine = SelectionStateMachine.GetInstance(TerrainTileMap, MouseTileMap, HighlightTile, SelectedTile);
+            _selectionStateMachine = SelectionStateMachine.GetInstance(TerrainTileMap, ObsticleTileMap, MouseTileMap, HighlightTile, SelectedTile);
         }
 
         if (HasMouseMoved() == true)
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int mapPosition = TerrainTileMap.WorldToCell(mousePosition);
+            Vector3Int objectPosition = ObsticleTileMap.WorldToCell(mousePosition);
 
             if (TerrainTileMap.HasTile(mapPosition))
             {
@@ -230,8 +235,7 @@ public class TileSelectionManager : MonoBehaviour
         if (Input.GetMouseButtonDown(ProgramConstants.MouseLeftClick) == true)
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3Int mapPosition = TerrainTileMap.WorldToCell(mousePosition);
-
+            Vector3Int mapPosition = TerrainTileMap.WorldToCell(mousePosition); 
             if (TerrainTileMap.HasTile(mapPosition))
             {
                 _selectionStateMachine.ProcessMouseLeftClick(mapPosition);

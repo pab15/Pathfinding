@@ -14,8 +14,8 @@ TagManager:
   - 
   - 
   - Path UI
+  - Obsticle
   - Ground
-  - 
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 1161866457
+    locked: 0
+  - name: Obsticle
+    uniqueID: 1017390261
     locked: 0
   - name: Path UI
     uniqueID: 3674828559

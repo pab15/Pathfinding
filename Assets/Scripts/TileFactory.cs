@@ -11,9 +11,39 @@ public class TileFactory
     {
         _tiles.Add("OutdoorsGround_0", new Tile() { 
             Name = "Grass",
-            Weight = 10
+            Weight = 20
+        });
+        _tiles.Add("OutdoorsGround_1", new Tile()
+        {
+            Name = "Grass",
+            Weight = 20
+        });
+        _tiles.Add("OutdoorsGround_2", new Tile()
+        {
+            Name = "Grass",
+            Weight = 20
         });
         _tiles.Add("OutdoorsGround_6", new Tile()
+        {
+            Name = "Road",
+            Weight = 5
+        });
+        _tiles.Add("OutdoorsGround_7", new Tile()
+        {
+            Name = "Road",
+            Weight = 5
+        });
+        _tiles.Add("OutdoorsGround_8", new Tile()
+        {
+            Name = "Road",
+            Weight = 5
+        });
+        _tiles.Add("OutdoorsGround_9", new Tile()
+        {
+            Name = "Road",
+            Weight = 5
+        });
+        _tiles.Add("OutdoorsGround_19", new Tile()
         {
             Name = "Road",
             Weight = 5
@@ -23,15 +53,45 @@ public class TileFactory
             Name = "Rough_Road",
             Weight = 25
         });
+        _tiles.Add("OutdoorsGround_11", new Tile()
+        {
+            Name = "Rough_Road2",
+            Weight = 7
+        });
+        _tiles.Add("OutdoorsGround_42", new Tile()
+        {
+            Name = "Lake",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsGround_43", new Tile()
+        {
+            Name = "Lake",
+            Weight = -1
+        });
         _tiles.Add("OutdoorsGround_44", new Tile()
         {
             Name = "Lake",
-            Weight = 100
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsGround_45", new Tile()
+        {
+            Name = "Lake",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsGround_46", new Tile()
+        {
+            Name = "Lake",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsGround_47", new Tile()
+        {
+            Name = "Lake",
+            Weight = -1
         });
         _tiles.Add("OutdoorsGround_29", new Tile()
         {
             Name = "Pond",
-            Weight = 50
+            Weight = -1
         });
         _tiles.Add("OutdoorsGround_36", new Tile()
         {
@@ -53,40 +113,142 @@ public class TileFactory
             Name = "Pond_Edge",
             Weight = 25
         });
+        _tiles.Add("OutdoorsGround_12", new Tile()
+        {
+            Name = "Path_Edge",
+            Weight = 20
+        });
         _tiles.Add("OutdoorsGround_13", new Tile()
         {
             Name = "Path_Edge",
-            Weight = 10
+            Weight = 20
+        });
+        _tiles.Add("OutdoorsGround_14", new Tile()
+        {
+            Name = "Path_Edge",
+            Weight = 20
+        });
+        _tiles.Add("OutdoorsGround_16", new Tile()
+        {
+            Name = "Path_Edge",
+            Weight = 20
+        });
+        _tiles.Add("OutdoorsGround_17", new Tile()
+        {
+            Name = "Path_Edge",
+            Weight = 20
         });
         _tiles.Add("OutdoorsGround_18", new Tile()
         {
             Name = "Path_Edge",
-            Weight = 10
+            Weight = 20
         });
         _tiles.Add("OutdoorsGround_20", new Tile()
         {
             Name = "Path_Edge",
-            Weight = 10
+            Weight = 20
         });
         _tiles.Add("OutdoorsGround_22", new Tile()
         {
             Name = "Path_Edge",
-            Weight = 10
+            Weight = 20
         });
         _tiles.Add("OutdoorsGround_24", new Tile()
         {
             Name = "Path_Edge",
-            Weight = 10
+            Weight = 20
         });
         _tiles.Add("OutdoorsGround_25", new Tile()
         {
             Name = "Path_Edge",
-            Weight = 10
+            Weight = 20
         });
+        // Objects:
+        _tiles.Add("OutdoorsObjects_0", new Tile()
+        {
+            Name = "Meduim_Rock",
+            Weight = 35
+        });
+        _tiles.Add("OutdoorsObjects_1", new Tile()
+        {
+            Name = "Small_Rock",
+            Weight = 20
+        });
+        _tiles.Add("OutdoorsObjects_2", new Tile()
+        {
+            Name = "Big_Rock",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_8", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_9", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_10", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_11", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_12", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_13", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_14", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_15", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_16", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_17", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_18", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_19", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+        _tiles.Add("OutdoorsObjects_20", new Tile()
+        {
+            Name = "Bush",
+            Weight = -1
+        });
+
         _tiles.Add("Generic", new Tile()
         {
             Name = "Unknown",
-            Weight = 10
+            Weight = 5
         });
     }
 
